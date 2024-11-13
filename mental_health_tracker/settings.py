@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-wz*d!=3^wu-%v0uwhm_m3hg$2!%yqsirf-bq!5k#q3!2q9_8-%
 PRODUCTION = os.getenv("PRODUCTION", False)
 DEBUG = not PRODUCTION
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "sezza-auraghaniya-mentalhealthtracker.pbp.cs.ui.ac.id"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "sezza-auraghaniya-mentalhealthtracker.pbp.cs.ui.ac.id", "10.0.2.2"]
 
 
 # Application definition
@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'authentication',
     'main'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -134,3 +136,10 @@ else:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","http://sezza-auraghaniya-mentalhealthtracker.pbp.cs.ui.ac.id/", "http://sezza-auraghaniya-mentalhealthtracker.pbp.cs.ui.ac.id/"]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
